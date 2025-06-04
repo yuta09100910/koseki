@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class Databasecontroller extends Controller
 {
-    //
+    public function showLoginForm()
+{
+    return view('auth.login'); // 必要に応じてビューを変更
+}
 }

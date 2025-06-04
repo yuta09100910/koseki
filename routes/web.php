@@ -33,7 +33,7 @@ Route::get('/master', function () {
 });
 Route::get('/kanri', [HomeController::class, 'kanri_route'])->name('kanri');
 
-
+require __DIR__.'/auth.php';
 
 
 

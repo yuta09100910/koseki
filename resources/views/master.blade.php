@@ -8,7 +8,7 @@
 <body>
     <div class="login_inner" >
         <form action="{{ route('kanri') }}">
-            @csrf
+            
             <label>ID: <input type="text" name="name"></label><br>
             <label>Password: <input type="password" name="password"></label><br>
             <input type="submit" value="ログイン">
