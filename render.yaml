@@ -1,13 +1,32 @@
 services:
   - type: web
-    name: koseki
+    name: laravel-docker-app
     env: docker
     plan: free
-    dockerfilePath: Dockerfile
-    buildFilter:
-      paths:
-        - Dockerfile
-        - render.yaml
+    buildCommand: |
+      cp .env.example .env
+      php artisan key:generate
+      php artisan config:cache
+      php artisan route:cache
+      php artisan view:cache
+      php artisan storage:link
+    startCommand: apache2-foreground
     envVars:
       - key: APP_ENV
         value: production
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_DEBUG
+        value: false
+      - key: DB_CONNECTION
+        value: mysql
+      - key: DB_HOST
+        value: YOUR_DB_HOST
+      - key: DB_PORT
+        value: 3306
+      - key: DB_DATABASE
+        value: YOUR_DB_NAME
+      - key: DB_USERNAME
+        value: YOUR_DB_USER
+      - key: DB_PASSWORD
+        value: YOUR_DB_PASSWORD
